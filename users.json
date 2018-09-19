@@ -1,0 +1,29 @@
+[
+  {
+	  "id": "0",
+	  "name": "Irina",
+		"password": "12345",
+		"dateOfBirth": "1998-06-17T21:00:00.000Z",
+		"dateOfFirstLogin": "2018-08-20T11:48:00.000Z",
+		"dateOfNextNotification": "2018-08-20T11:48:00.000Z",
+		"information": "data"
+	},
+	{
+	  "id": "1",
+	  "name": "Nastya",
+		"password": "6789",
+		"dateOfBirth": "1997-08-26T21:00:00.000Z",
+		"dateOfFirstLogin": "2018-05-20T23:03:00.000Z",
+		"dateOfNextNotification": "2018-03-24T12:18:00.000Z",
+		"information": "data"
+	},
+	{
+	  "id": "2",
+	  "name": "Vanya",
+		"password": "25874",
+		"dateOfBirth": "1989-11-20T23:00:00.000Z",
+		"dateOfFirstLogin": "2017-05-20T23:03:00.000Z",
+		"dateOfNextNotification": "2018-01-27T22:33:00.000Z",
+		"information": "data"
+	}
+]
