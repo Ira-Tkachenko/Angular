@@ -3,9 +3,20 @@ import { Request, Response, NextFunction } from 'express'
 import * as bodyParser from "body-parser"
 
 const app = express();
-const users: Array<any> = require('../users.json');
+const users = <User[]>require('../users.json');
 
-app.use(bodyParser());
+interface User {
+    id: string;
+    name: string;
+    password: string;
+    dateOfBirth: string;
+    dateOfFirstLogin: string;
+    dateOfNextNotification: string;
+    information: string;
+}
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/users', (req, res) => {
   res.send(users);
@@ -13,7 +24,11 @@ app.get('/users', (req, res) => {
 
 app.get('/users/:id', (req, res, next) => {
   const userId = req.params["id"];
-  res.send(users.find(item => item.id == userId));
+  const user = users.find(item => item.id == userId);
+  if (user == undefined) {
+    next(res);
+  }
+  res.send(user);
 });
 
 app.post('/users/add', (req, res, next) => {
@@ -60,7 +75,7 @@ app.delete('/users/:id', (req, res, next) => {
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => { 
   console.error(err.stack);
-  res.status(404).send('ID Not Found on Server');
+  res.send('ID Not Found on Server. Status code: ' + res.statusCode);
 });
 
 app.listen(3030, () => {
