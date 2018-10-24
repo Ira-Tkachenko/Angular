@@ -1,0 +1,83 @@
+$border: #20B2AA;
+$formColor: #008080;
+$buttonTextColor: #FF4500;
+$buttonTextColorHover: #FF8C00;
+
+body {
+  text-align: center;
+  padding: 10px;
+
+}
+
+.form {
+  display: inline-block;
+  padding: 25px;
+  border: 1px solid $border;
+  border-radius: 5px;
+  width: 500px;
+  color: $buttonTextColorHover;
+}
+
+.form__field {
+  margin-bottom: 10px;
+}
+
+.form__check {
+  color: $buttonTextColorHover;
+  text-align: left;
+  font-size: 12px;
+  display: block;
+  margin-top: 3px;
+}
+
+.form__error {
+  color: red;
+  text-align: left;
+  font-size: 12px;
+  display: block;
+  margin-top: 3px;
+}
+
+.form {
+  input {
+    outline: none;
+    display: block;
+    width: 100%;
+    border-radius: 2px;
+    border: 1px solid $border;
+    padding: 10px;
+    box-sizing: border-box;
+
+    &:valid:not(:placeholder-shown) {
+      border: 2px solid $formColor;
+    }
+  }
+
+  button {
+    width: 40%;
+    padding: 10px;
+    margin:  5px 23px;
+    border-radius: 2px;
+    border: 0;
+    background-color: $border;
+    color: $buttonTextColor;
+    font-size: 20px;
+    cursor: pointer;
+    cursor: hand;
+
+    &:disabled {
+      background-color: #eee;
+      color: #aaa;
+      cursor: auto;
+      &:hover {
+        background-color: #ADD8E6;
+        color: $buttonTextColorHover;
+      }
+    }
+
+    &:hover {
+      background-color: $formColor;
+      color: $buttonTextColorHover;
+    }
+  }
+} 

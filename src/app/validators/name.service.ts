@@ -5,7 +5,10 @@ import { delay } from 'rxjs/operators';
 const ALTER_EGOS = ['Eric'];
 
 function ValidateName(name: string): true | false {
-	name = name.trim();
+  if (name !== null) {
+    name = name.trim();
+  }
+	
 	if (name !== undefined && name !== '' && name != null && CheckLetters(name)) {
 		let firstname = null;
     let surname = null;

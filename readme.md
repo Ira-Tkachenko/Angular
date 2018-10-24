@@ -1,3 +1,9 @@
+_______________________
+1. npm install
+2. in main Folder: ng build and ng serve
+3. in server Folder: npm install, node app.ts and nodemon app.js
+_______________________
+
 # AngularProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.5.
