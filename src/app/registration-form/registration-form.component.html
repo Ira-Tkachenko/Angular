@@ -1,0 +1,71 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" #formDir="ngForm">
+  
+  <label>
+    Name:
+    <input type="text" formControlName="name" placeholder="Baton Batonov" #name>
+  </label>
+  <div *ngIf="registrationForm.get('name').pending">Validating...</div>
+  <div
+  *ngIf="registrationForm.get('name').errors &&
+        registrationForm.get('name').dirty &&
+        registrationForm.get('name').errors?.validName">
+    There should be one or two words!
+  </div>
+
+  <label>
+    Age:
+    <input type="text" formControlName="age" placeholder="[18-65]" #age>
+  </label>
+  <div
+  *ngIf="registrationForm.get('age').errors &&
+        registrationForm.get('age').dirty &&
+        registrationForm.get('age').errors?.validAge">
+    Range of numbers should be from 18 till 65!
+  </div>
+
+  <label>
+    Birthday:
+    <input type="text" formControlName="birthday" placeholder="YYYY/MM/DD" #birthday>
+  </label>
+  <div
+  *ngIf="registrationForm.get('birthday').errors &&
+        registrationForm.get('birthday').dirty &&
+        registrationForm.get('birthday').errors?.validDateSlash">
+    Date format should be (YYYY/MM/DD)!
+  </div>
+
+  <label>
+    Date of login:
+    <input type="text" formControlName="dateOfLogin" placeholder="DD MMMM YYYY" #dateOfLogin>
+  </label>
+  <div
+  *ngIf="registrationForm.get('dateOfLogin').errors &&
+        registrationForm.get('dateOfLogin').dirty &&
+        registrationForm.get('dateOfLogin').errors?.validDateSpace">
+    Date format should be (DD MMMM YYYY)!
+  </div>
+
+  <label>
+    Date of notification:
+    <input type="text" formControlName="dateOfNotification" placeholder="DD-MMM-YY" #dateOfNotification>
+  </label>
+  <div
+  *ngIf="registrationForm.get('dateOfNotification').errors &&
+        registrationForm.get('dateOfNotification').dirty &&
+        registrationForm.get('dateOfNotification').errors?.validDateDash">
+    Date format should be (DD-MMM-YY)!
+  </div>
+
+  <button type="submit" [disabled]="registrationForm.invalid" 
+  (click)="update(name.value, age.value, birthday.value, dateOfLogin.value, dateOfNotification.value)">Submit</button>
+  <button type="button" class="btn btn-default" (click)="formDir.resetForm({})">Reset</button>
+
+</form>
+
+<div *ngIf="show">
+  Name: {{submitName}}<br>
+  Age: {{submitAge}}<br>
+  Birthday: {{submitBirthday}}<br>
+  Date of login: {{submitDateOfLogin}}<br>
+  Date of notification: {{submitDateOfNotification}}
+</div>
