@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { AgeValidator } from '../validators/age.validator';
-import { DateSlashValidator } from '../validators/dateSlash.validator';
-import { DateSpaceValidator } from '../validators/dateSpace.validator';
-import { DateDashValidator } from '../validators/dateDash.validator';
-import { NameValidator } from '../validators/name.directive';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AgeValidator } from '../../validators/age.validator';
+import { DateSlashValidator } from '../../validators/dateSlash.validator';
+import { DateSpaceValidator } from '../../validators/dateSpace.validator';
+import { DateDashValidator } from '../../validators/dateDash.validator';
+import { NameValidator } from '../../validators/name.directive';
 
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
-  styleUrls: ['./registration-form.component.scss']
+  styleUrls: ['../form.component.scss']
 })
 export class RegistrationFormComponent implements OnInit {
   public show:boolean = false;
@@ -39,7 +39,6 @@ export class RegistrationFormComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.registrationForm.value);
-    //alert(JSON.stringify(this.registrationForm.value));
   }
   
   update(name: string, age: string, birthday: string, dateOfLogin: string, dateOfNotification: string) { 

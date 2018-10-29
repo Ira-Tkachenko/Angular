@@ -8,6 +8,7 @@ const users = <User[]>require('../users.json');
 interface User {
     id: string;
     name: string;
+    age: number;
     password: string;
     dateOfBirth: string;
     dateOfFirstLogin: string;
@@ -35,6 +36,7 @@ app.post('/users/add', (req, res, next) => {
   const user = {
     id: Math.floor(Math.random() * 10000000000000001).toString(),
     name: req.body.name,
+    age: req.body.age,
     password: req.body.password,
     dateOfBirth: req.body.dateOfBirth,
     dateOfFirstLogin: (new Date).toISOString(),
@@ -54,6 +56,7 @@ app.put('/users/:id', (req, res, next) => {
   users[index] = {
     id: userId,
     name: req.body.name||users[index].name,
+    age: req.body.age||users[index].age,
     password: req.body.password||users[index].password,
     dateOfBirth: req.body.dateOfBirth||users[index].dateOfBirth,
     dateOfFirstLogin: req.body.dateOfFirstLogin||users[index].dateOfFirstLogin,

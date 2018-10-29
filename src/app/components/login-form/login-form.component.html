@@ -1,0 +1,38 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" #formDir="ngForm" class="form">
+  <div class="form__field">
+    <label>
+      Name*:
+      <input type="text" formControlName="name" placeholder="Baton Batonov" #name>
+    </label>
+    <div class="form__check" 
+    *ngIf="loginForm.get('name').dirty && 
+          loginForm.get('name').pending">
+        Validating...
+    </div>
+    <div class="form__error"
+    *ngIf="loginForm.get('name').errors &&
+          loginForm.get('name').dirty &&
+          loginForm.get('name').errors?.validName">
+      There must be one or two english words with a large first letter!
+    </div>
+  </div>
+
+  <div class="form__field">
+    <label>
+      Password:
+      <input type="text" formControlName="password" placeholder="password" #password>
+    </label>
+    <div class="form__error"
+    *ngIf="loginForm.get('password').errors &&
+          loginForm.get('password').dirty &&
+          loginForm.get('password').errors?.validPassword">
+      The length must be at least four characters without spaces.
+    </div>
+  </div> 
+
+  <div class="button_div">
+    <button type="submit" [disabled]="loginForm.invalid" 
+      routerLink="/user">Log in</button>
+    <button type="button" (click)="formDir.resetForm({})">Reset</button>
+  </div>
+</form>

@@ -1,15 +1,19 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" #formDir="ngForm" class="form">
   <div class="form__field">
     <label>
-      Name:
+      Name*:
       <input type="text" formControlName="name" placeholder="Baton Batonov" #name>
     </label>
-    <div class="form__check" *ngIf="registrationForm.get('name').pending">Validating...</div>
+    <div class="form__check" 
+    *ngIf="registrationForm.get('name').dirty && 
+          registrationForm.get('name').pending">
+        Validating...
+    </div>
     <div class="form__error"
     *ngIf="registrationForm.get('name').errors &&
           registrationForm.get('name').dirty &&
           registrationForm.get('name').errors?.validName">
-      There should be one or two english words with a large first letter!
+      There must be one or two english words with a large first letter!
     </div>
   </div>
 
@@ -22,7 +26,7 @@
     *ngIf="registrationForm.get('age').errors &&
           registrationForm.get('age').dirty &&
           registrationForm.get('age').errors?.validAge">
-      Range of numbers should be from 18 till 65!
+      The range of numbers must be from 18 till 65!
     </div>
   </div>
 
@@ -35,7 +39,7 @@
     *ngIf="registrationForm.get('birthday').errors &&
           registrationForm.get('birthday').dirty &&
           registrationForm.get('birthday').errors?.validDateSlash">
-      Date format should be (YYYY/MM/DD)!
+      Date format must be (YYYY/MM/DD)!
     </div>
   </div>
 
@@ -48,7 +52,7 @@
     *ngIf="registrationForm.get('dateOfLogin').errors &&
           registrationForm.get('dateOfLogin').dirty &&
           registrationForm.get('dateOfLogin').errors?.validDateSpace">
-      Date format should be (DD MMMM YYYY)!
+      Date format must be (DD MMMM YYYY)!
     </div>
   </div>  
 
@@ -61,14 +65,15 @@
     *ngIf="registrationForm.get('dateOfNotification').errors &&
           registrationForm.get('dateOfNotification').dirty &&
           registrationForm.get('dateOfNotification').errors?.validDateDash">
-      Date format should be (DD-MMM-YY)!
+      Date format must be (DD-MMM-YY)!
     </div>
   </div>  
 
-  <button type="submit" [disabled]="registrationForm.invalid" 
-  (click)="update(name.value, age.value, birthday.value, dateOfLogin.value, dateOfNotification.value)">Submit</button>
-  <button type="button" (click)="formDir.resetForm({})">Reset</button>
-
+  <div class="button_div">
+    <button type="submit" [disabled]="registrationForm.invalid" 
+      (click)="update(name.value, age.value, birthday.value, dateOfLogin.value, dateOfNotification.value)">Submit</button>
+    <button type="button" (click)="formDir.resetForm({})">Reset</button>
+  </div>
 </form>
 
 <div *ngIf="show">

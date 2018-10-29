@@ -1,7 +1,7 @@
 _______________________
 1. npm install
 2. in main Folder: ng build and ng serve
-3. in server Folder: npm install, node app.ts and nodemon app.js
+3. in server Folder: npm install, yarn tsc -w and in build Folder: nodemon app.js
 _______________________
 
 # AngularProject

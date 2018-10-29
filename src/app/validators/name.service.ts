@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-const ALTER_EGOS = ['Eric'];
-
 function ValidateName(name: string): true | false {
   if (name !== null) {
     name = name.trim();

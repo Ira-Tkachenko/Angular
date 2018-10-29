@@ -11,10 +11,10 @@ body {
 
 .form {
   display: inline-block;
-  padding: 25px;
+  padding: 20px;
   border: 1px solid $border;
   border-radius: 5px;
-  width: 500px;
+  width: 330px;
   color: $buttonTextColorHover;
 }
 
@@ -38,6 +38,10 @@ body {
   margin-top: 3px;
 }
 
+.button_div {
+  text-align: center;
+}
+
 .form {
   input {
     outline: none;
@@ -54,9 +58,9 @@ body {
   }
 
   button {
-    width: 40%;
+    width: 100px;
     padding: 10px;
-    margin:  5px 23px;
+    margin: 0 10px;
     border-radius: 2px;
     border: 0;
     background-color: $border;
