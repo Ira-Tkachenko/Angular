@@ -5,8 +5,7 @@
       <input type="text" formControlName="name" placeholder="Baton Batonov" #name>
     </label>
     <div class="form__check" 
-    *ngIf="registrationForm.get('name').dirty && 
-          registrationForm.get('name').pending">
+    *ngIf="registrationForm.get('name').pending">
         Validating...
     </div>
     <div class="form__error"

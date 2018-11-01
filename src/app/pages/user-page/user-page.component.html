@@ -1,5 +1,23 @@
-<nav>
-  <a routerLink="/info" routerLinkActive="active">User information</a> 
-  <a routerLink="/update" routerLinkActive="active">Update user</a>
-</nav>
-<button routerLink="/update">Click</button>
+<section>
+  <ul class="nav nav-tabs">
+		<li *ngFor="let item of arrayTabs; let i = index;"
+		    [class.active]="i === idSelect"
+		    (click)="chandeTad(i)">
+		  <a>{{item}}</a>
+		</li>
+    <li>
+      <button type="submit" routerLink="/login">Log out</button>
+    </li>
+	</ul>
+  <div [ngSwitch]="idSelect">
+    <div *ngSwitchCase="0">
+      <app-user-info></app-user-info>
+    </div>
+    <div *ngSwitchCase="1">
+      <app-registration-form></app-registration-form>
+    </div>
+    <div *ngSwitchDefault>
+      <app-user-info></app-user-info>
+    </div>
+  </div>
+</section>

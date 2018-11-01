@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-login-page',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userService: UsersService) { }
+
+  users = this.userService.getUsers();
 
   ngOnInit() {
   }

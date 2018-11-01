@@ -5,8 +5,7 @@
       <input type="text" formControlName="name" placeholder="Baton Batonov" #name>
     </label>
     <div class="form__check" 
-    *ngIf="loginForm.get('name').dirty && 
-          loginForm.get('name').pending">
+    *ngIf="loginForm.get('name').pending">
         Validating...
     </div>
     <div class="form__error"
@@ -31,8 +30,14 @@
   </div> 
 
   <div class="button_div">
-    <button type="submit" [disabled]="loginForm.invalid" 
-      routerLink="/user">Log in</button>
-    <button type="button" (click)="formDir.resetForm({})">Reset</button>
+    <button type="submit" routerLink="/user"
+      [disabled]="loginForm.invalid" (click)="search(name.value); name.value=''">Log in</button>
+    <button type="button" (click)="formDir.resetForm({})">Reset</button><br>
+    <!--<button type="button" routerLink="/restore">Forgot password?</button>-->
+    <a routerLink="/restore" routerLinkActive="active">Forgot password?</a>
   </div>
 </form>
+
+<div *ngFor="let user of users ">
+  <p><b>{{user.name}}</b></p>
+</div>

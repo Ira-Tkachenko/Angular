@@ -1,7 +1,8 @@
-import * as express from 'express'
-import { Request, Response, NextFunction } from 'express'
-import * as bodyParser from "body-parser"
+import * as express from 'express';
+import { Request, Response, NextFunction } from 'express';
+import * as bodyParser from "body-parser";
 
+const cors = require('cors');
 const app = express();
 const users = <User[]>require('../users.json');
 
@@ -47,7 +48,7 @@ app.post('/users/add', (req, res, next) => {
   res.send(user);
 });
 
-app.put('/users/:id', (req, res, next) => {
+app.put('/users/:id', cors(), (req, res, next) => {
   const userId = req.params["id"];
   const index = users.findIndex(item => item.id == userId);
   if (index == -1) {
@@ -78,6 +79,11 @@ app.delete('/users/:id', (req, res, next) => {
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => { 
   console.error(err.stack);
+  /*res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();*/
   res.send('ID Not Found on Server. Status code: ' + res.statusCode);
 });
 

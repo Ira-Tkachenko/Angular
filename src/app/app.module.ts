@@ -11,7 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RestoreFormComponent } from './components/restore-form/restore-form.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
-import { UserInfoComponent } from './components/user-info/user-info.component'
+import { UserInfoComponent } from './components/user-info/user-info.component';
+
+import { UsersService } from './services/users.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { UserInfoComponent } from './components/user-info/user-info.component'
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UsersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

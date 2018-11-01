@@ -1,3 +1,54 @@
-<p>
-  restore-form works!
-</p>
+<form [formGroup]="restoreForm" (ngSubmit)="onSubmit()" #formDir="ngForm" class="form">
+  <div class="form__field">
+    <label>
+      Name*:
+      <input type="text" formControlName="name" placeholder="Baton Batonov" #name>
+    </label>
+    <div class="form__check" 
+    *ngIf="restoreForm.get('name').pending">
+        Validating...
+    </div>
+    <div class="form__error"
+    *ngIf="restoreForm.get('name').errors &&
+          restoreForm.get('name').dirty &&
+          restoreForm.get('name').errors?.validName">
+      There must be one or two english words with a large first letter!
+    </div>
+  </div>
+
+  <div class="form__field">
+    <label>
+      New password*:
+      <input type="text" formControlName="newPassword" placeholder="new password" #newPpassword>
+    </label>
+    <div class="form__error"
+    *ngIf="restoreForm.get('newPassword').errors &&
+          restoreForm.get('newPassword').dirty &&
+          restoreForm.get('newPassword').errors?.validPassword">
+      The length must be at least four characters without spaces.
+    </div>
+  </div> 
+
+  <div class="form__field">
+    <label>
+      Repeat password*:
+      <input type="text" formControlName="repeatedPassword" placeholder="repeat password" #repeatedPassword>
+    </label>
+    <div class="form__error"
+    *ngIf="restoreForm.get('repeatedPassword').errors &&
+          restoreForm.get('repeatedPassword').dirty &&
+          restoreForm.get('repeatedPassword').errors?.validPassword">
+      The length must be at least four characters without spaces.
+    </div>
+    <div class="form__error"
+    *ngIf="restoreForm.get('repeatedPassword').dirty &&
+          restoreForm.get('newPassword').value != restoreForm.get('repeatedPassword').value">
+      Repeated password doesn't match.
+    </div>
+  </div> 
+
+  <div class="button_div">
+    <button type="submit" [disabled]="restoreForm.invalid" routerLink="/user">Restore and log in</button>
+    <button type="button" (click)="formDir.resetForm({})">Reset</button><br>
+  </div>
+</form>
