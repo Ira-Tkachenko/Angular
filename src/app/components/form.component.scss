@@ -6,7 +6,6 @@ $buttonTextColorHover: #FF8C00;
 body {
   text-align: center;
   padding: 10px;
-
 }
 
 .form {
@@ -16,7 +15,25 @@ body {
   border-radius: 5px;
   width: 330px;
   color: $buttonTextColorHover;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.login-form {
+  display: table;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+ .restore-form {
+  display: table;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+ }
 
 .form__field {
   margin-bottom: 10px;

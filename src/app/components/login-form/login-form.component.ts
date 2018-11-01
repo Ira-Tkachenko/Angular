@@ -13,13 +13,15 @@ import { User } from '../../services/user';
   styleUrls: ['../form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  users: User[];
+  //users: User[];
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder, 
              private nameValidator: NameValidator, 
-             private usersServise: UsersService
+             public userService: UsersService
    ) { }
+
+  users = this.userService.getUsers();
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -29,24 +31,37 @@ export class LoginFormComponent implements OnInit {
       }],
       password: ['', [Validators.required, PasswordValidator]]
     });
-    this.getUsers();
-    console.log(this.search('Irina'));
+    //this.getUsers();
+    //console.log(this.search('Irina'));
   }
 
-  getUsers(): void {
+  /*getUsers(): void {
     this.usersServise.getUsers()
       .subscribe(users => this.users = users);
-  }
+  }*/
 
   onSubmit() {
     console.warn(this.loginForm.value);
   }
 
   search(searchTerm: string) {
-    if (searchTerm) {
-      return this.usersServise.searchUsers(searchTerm)
-        .subscribe(users => this.users = users);
-    }
+    /*if (searchTerm) { 
+      return this.usersServise.searchUsers(searchTerm);
+        
+    }*/
+    /*if (searchTerm) {
+      let c = this.usersServise.searchUsers(searchTerm);
+    }*/    
   }
+
+  user = null;
+  user_s = this.userService.getUsers()
+    .subscribe(function (users) { 
+      this.user = users.filter(function (item) {
+        item.name == 'Irina';
+      })
+    });
+
+  //user_s = this.users.subscribe(find(item => item.name == name));
 
 }

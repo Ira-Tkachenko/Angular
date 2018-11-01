@@ -15,13 +15,19 @@ const httpOptions = {
 
 @Injectable()
 export class UsersService {
-	usersUrl = 'http://localhost:3030/users';
+  users: User[];
+  usersUrl = 'http://localhost:3030/users';
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
   }
+
+  /*getUserForLogin(name: string): Observable<User[]> {
+  	name = name.trim();
+    const res = this.getUsers().subscribe(user => user.name == name);
+  }*/
 
   searchUsers(term: string): Observable<User[]> {
 	  term = term.trim();
