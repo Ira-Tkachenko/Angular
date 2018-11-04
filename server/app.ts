@@ -48,7 +48,21 @@ app.post('/users/add', (req, res, next) => {
   res.send(user);
 });
 
-app.put('/users/:id', cors(), (req, res, next) => {
+app.post('/login', (req, res, next) => {
+  const name = req.body.name;
+  const password = req.body.password;
+  const user = users.find(item => (item.name == name && item.password == password));
+  res.send(user);
+});
+
+/*app.post('/login', (req, res, next) => {
+  const name = req.body.name;
+  //const password = req.body.password;
+  const user = users.find(item => item.name == name);
+  res.send(user);
+});*/
+
+app.put('/users/:id', (req, res, next) => {
   const userId = req.params["id"];
   const index = users.findIndex(item => item.id == userId);
   if (index == -1) {

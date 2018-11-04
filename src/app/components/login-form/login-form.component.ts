@@ -7,61 +7,62 @@ import { PasswordValidator } from '../../validators/password.validator';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../services/user';
 
+import { CurrentUserService } from '../../services/current-user.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['../form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  //users: User[];
   loginForm: FormGroup;
+  receivedUser: User;
 
   constructor(private fb: FormBuilder, 
              private nameValidator: NameValidator, 
-             public userService: UsersService
-   ) { }
+             public userService: UsersService,
+             private currentUser: CurrentUserService,
+             private router: Router
+  ) { }
 
-  users = this.userService.getUsers();
+  //users = this.userService.getUsers();
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      name: ['', {validators: [Validators.required],
-        asyncValidators: [this.nameValidator.validate.bind(this.nameValidator)],
-        updateOn: 'blur'
+      name: ['Irina', {validators: [Validators.required],
+        asyncValidators: [this.nameValidator.validate.bind(this.nameValidator)]
       }],
-      password: ['', [Validators.required, PasswordValidator]]
+      password: ['12345', [Validators.required, PasswordValidator]]
     });
-    //this.getUsers();
-    //console.log(this.search('Irina'));
+
+    //this.searchUser(this.loginForm.get('name').value, this.loginForm.get('password').value);
   }
 
   /*getUsers(): void {
     this.usersServise.getUsers()
       .subscribe(users => this.users = users);
   }*/
+  
 
-  onSubmit() {
-    console.warn(this.loginForm.value);
+  login(userName: string, userPassword: string) {
+    this.userService.loginUser(this.loginForm.get('name').value, this.loginForm.get('password').value)
+      .subscribe((data: User) => {
+        this.currentUser.setData(data);
+        this.router.navigate(['/user']);
+        console.log(data);
+      });
   }
 
-  search(searchTerm: string) {
-    /*if (searchTerm) { 
-      return this.usersServise.searchUsers(searchTerm);
-        
-    }*/
-    /*if (searchTerm) {
-      let c = this.usersServise.searchUsers(searchTerm);
-    }*/    
-  }
+  /*onSubmit() {
+    
 
-  user = null;
-  user_s = this.userService.getUsers()
-    .subscribe(function (users) { 
-      this.user = users.filter(function (item) {
-        item.name == 'Irina';
-      })
-    });
-
-  //user_s = this.users.subscribe(find(item => item.name == name));
+    console.log(this.receivedUser);
+    if (this.receivedUser == null) {
+      console.log('error');
+    }
+    this.currentUser.setData(this.receivedUser);
+    console.log(this.currentUser.getData());
+  }*/
 
 }

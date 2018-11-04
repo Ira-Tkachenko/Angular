@@ -69,8 +69,12 @@ body {
     padding: 10px;
     box-sizing: border-box;
 
-    &:valid:not(:placeholder-shown) {
+    /*&:valid:not(:placeholder-shown) {
       border: 2px solid $formColor;
+    }*/
+
+    &.ng-touched.ng-invalid{
+      border-color: #FF0000;
     }
   }
 

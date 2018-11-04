@@ -5,6 +5,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RestoreFormComponent } from './components/restore-form/restore-form.component';
+import { UsersService } from './services/users.service';
 //import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 //import { UserInfoComponent } from './components/user-info/user-info.component';
 

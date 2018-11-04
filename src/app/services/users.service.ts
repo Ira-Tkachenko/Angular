@@ -6,23 +6,25 @@ import { catchError } from 'rxjs/operators';
 import { User } from './user';
 import { HttpHeaders } from '@angular/common/http';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
-  })
-};
-
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UsersService {
   users: User[];
   usersUrl = 'http://localhost:3030/users';
+  loginUrl = 'http://localhost:3030/login';
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
   }
+
+  loginUser(userName: string, userPassword: string): Observable<User> {
+  	const params = {name: userName, password: userPassword};
+    return this.http.post<User>(this.loginUrl, params);
+  }
+
 
   /*getUserForLogin(name: string): Observable<User[]> {
   	name = name.trim();
@@ -38,5 +40,5 @@ export class UsersService {
 	    /*.pipe(
 	      catchError(this.handleError<User[]>('searchHeroes', []))
 	    );*/
-	}
+  }	    
 }

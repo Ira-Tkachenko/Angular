@@ -14,6 +14,7 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 
 import { UsersService } from './services/users.service';
+import { CurrentUserService } from './services/current-user.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UsersService } from './services/users.service';
     HttpClientModule
   ],
   providers: [
-    UsersService
+    UsersService,
+    CurrentUserService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,1 +1,0 @@
-export {RegistrationFormComponent} from './registration-form/registration-form.component';

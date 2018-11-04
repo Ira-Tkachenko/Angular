@@ -1,6 +1,6 @@
 <div class="user-info">
   <ul class="list-group">
-    <li class="list-group-item">Name: </li>
+    <li class="list-group-item">Name: {{currentUser.getData()}}</li>
     <li class="list-group-item">Age: </li>
     <li class="list-group-item">Birthday: </li>
     <li class="list-group-item">Date of login: </li>
@@ -8,3 +8,4 @@
     <li class="list-group-item">Data: </li>
   </ul>
 </div>
+<button type="button" (click)="click()">Click</button><br>
