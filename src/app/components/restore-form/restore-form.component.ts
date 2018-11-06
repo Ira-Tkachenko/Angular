@@ -4,6 +4,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NameValidator } from '../../validators/name.directive';
 import { PasswordValidator } from '../../validators/password.validator';
 
+import { User } from '../../services/user';
+import { CurrentUserService } from '../../services/current-user.service';
+import { UsersService } from '../../services/users.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-restore-form',
   templateUrl: './restore-form.component.html',
@@ -11,22 +16,41 @@ import { PasswordValidator } from '../../validators/password.validator';
 })
 export class RestoreFormComponent implements OnInit {
   restoreForm: FormGroup;
+  user: User; 
 
-  constructor(private fb: FormBuilder, private nameValidator: NameValidator) { }
+  constructor(private fb: FormBuilder,
+              private nameValidator: NameValidator,
+              private currentUser: CurrentUserService,
+              public userService: UsersService,
+              private router: Router
+  ) { }
 
   ngOnInit() {
     this.restoreForm = this.fb.group({
       name: ['', {validators: [Validators.required],
-        asyncValidators: [this.nameValidator.validate.bind(this.nameValidator)],
-        updateOn: 'blur'
+        asyncValidators: [this.nameValidator.validate.bind(this.nameValidator)]
       }],
       newPassword: ['', [Validators.required, PasswordValidator]],
       repeatedPassword: ['', [Validators.required, PasswordValidator]]
     });
   }
 
-  onSubmit() {
-    console.warn(this.restoreForm.value);
+  login(userName: string, userPassword: string) {
+    console.log(userName);
+
+    const updateUser = {
+      password: userPassword,
+    }
+
+    this.userService.restoreUser(userName, updateUser)
+      .subscribe((data: User) => {
+        if (data) {
+          this.currentUser.setData(data);
+          this.router.navigate(['/user']);
+        } else {
+          alert('Username not found.')
+        }
+      });
   }
 
 }

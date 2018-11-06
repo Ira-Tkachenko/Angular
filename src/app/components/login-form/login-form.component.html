@@ -31,7 +31,7 @@
 
   <div class="button_div">
     <button type="submit" (click)="login(loginForm.get('name').value, loginForm.get('password').value)"
-      [disabled]="loginForm.invalid">Log in</button>
+    [disabled]="loginForm.invalid">Log in</button>
     <button type="button" (click)="formDir.resetForm({})">Reset</button><br>
     <!--<button type="button" routerLink="/restore">Forgot password?</button>-->
     <a routerLink="/restore" routerLinkActive="active">Forgot password?</a>

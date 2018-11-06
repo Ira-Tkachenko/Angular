@@ -21,24 +21,28 @@ export class UsersService {
   }
 
   loginUser(userName: string, userPassword: string): Observable<User> {
+    userName = userName.trim();
   	const params = {name: userName, password: userPassword};
     return this.http.post<User>(this.loginUrl, params);
   }
 
+  restoreUser(userName: string, user: User): Observable<User> {
+  	userName = userName.trim();
+    return this.http.put<User>('http://localhost:3030/restore/' + userName, user);
+  } 
 
-  /*getUserForLogin(name: string): Observable<User[]> {
-  	name = name.trim();
-    const res = this.getUsers().subscribe(user => user.name == name);
-  }*/
+  putUser(id: number, user: User): Observable<User> {
+    return this.http.put<User>('http://localhost:3030/users/' + id, user);
+  } 
 
-  searchUsers(term: string): Observable<User[]> {
-	  term = term.trim();
-	  const options = term ?
-	   { params: new HttpParams().set('name', term) } : {};
+  /*searchUsers(term: string): Observable<User[]> {
+    term = term.trim();
+    const options = term ?
+     { params: new HttpParams().set('name', term) } : {};
 
-	  return this.http.get<User[]>(this.usersUrl, options)
-	    /*.pipe(
-	      catchError(this.handleError<User[]>('searchHeroes', []))
-	    );*/
-  }	    
+    return this.http.get<User[]>(this.usersUrl, options)
+      .pipe(
+        catchError(this.handleError<User[]>('searchHeroes', []))
+      );
+  }*/      
 }

@@ -2,7 +2,7 @@ import * as express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import * as bodyParser from "body-parser";
 
-const cors = require('cors');
+//const cors = require('cors');
 const app = express();
 const users = <User[]>require('../users.json');
 
@@ -55,13 +55,6 @@ app.post('/login', (req, res, next) => {
   res.send(user);
 });
 
-/*app.post('/login', (req, res, next) => {
-  const name = req.body.name;
-  //const password = req.body.password;
-  const user = users.find(item => item.name == name);
-  res.send(user);
-});*/
-
 app.put('/users/:id', (req, res, next) => {
   const userId = req.params["id"];
   const index = users.findIndex(item => item.id == userId);
@@ -78,7 +71,26 @@ app.put('/users/:id', (req, res, next) => {
     dateOfNextNotification: req.body.dateOfNextNotification||users[index].dateOfNextNotification,
     information: req.body.information||users[index].information
   }
-  res.send(users);
+  res.send(users[index]);
+});
+
+app.put('/restore/:name', (req, res, next) => {
+  const userName = req.params["name"];
+  const index = users.findIndex(item => item.name == userName);
+  if (index == -1) {
+    next(res);
+  }
+  users[index] = {
+    id: req.body.id||users[index].id,
+    name: userName,
+    age: req.body.age||users[index].age,
+    password: req.body.password||users[index].password,
+    dateOfBirth: req.body.dateOfBirth||users[index].dateOfBirth,
+    dateOfFirstLogin: req.body.dateOfFirstLogin||users[index].dateOfFirstLogin,
+    dateOfNextNotification: req.body.dateOfNextNotification||users[index].dateOfNextNotification,
+    information: req.body.information||users[index].information
+  }
+  res.send(users[index]);
 });
 
 app.delete('/users/:id', (req, res, next) => {

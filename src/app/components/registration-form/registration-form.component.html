@@ -1,8 +1,8 @@
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" #formDir="ngForm" class="form">
+<form [formGroup]="registrationForm" #formDir="ngForm" class="form">
   <div class="form__field">
     <label>
       Name*:
-      <input type="text" formControlName="name" placeholder="Baton Batonov" #name>
+      <input type="text" formControlName="name" placeholder="Baton Batonov" #name value="{{user.name}}">
     </label>
     <div class="form__check" 
     *ngIf="registrationForm.get('name').pending">
@@ -19,7 +19,7 @@
   <div class="form__field">
     <label>
       Age:
-      <input type="text" formControlName="age" placeholder="[18-65]" #age>
+      <input type="text" formControlName="age" placeholder="[18-65]" #age value="{{user.age}}">
     </label>
     <div class="form__error"
     *ngIf="registrationForm.get('age').errors &&
@@ -32,7 +32,8 @@
   <div class="form__field">
     <label>
       Birthday:
-      <input type="text" formControlName="birthday" placeholder="YYYY/MM/DD" #birthday>
+      <input type="text" formControlName="birthday" placeholder="YYYY/MM/DD" #birthday
+      value="{{user.dateOfBirth | date:'shortDate'}}">
     </label>
     <div class="form__error"
     *ngIf="registrationForm.get('birthday').errors &&
@@ -45,7 +46,8 @@
   <div class="form__field">
     <label>
       Date of login:
-      <input type="text" formControlName="dateOfLogin" placeholder="DD MMMM YYYY" #dateOfLogin>
+      <input type="text" formControlName="dateOfLogin" placeholder="DD MMMM YYYY" #dateOfLogin
+      value="{{user.dateOfFirstLogin | date:'shortDate'}}">
     </label>
     <div class="form__error"
     *ngIf="registrationForm.get('dateOfLogin').errors &&
@@ -58,7 +60,8 @@
   <div class="form__field">
     <label>
       Date of notification:
-      <input type="text" formControlName="dateOfNotification" placeholder="DD-MMM-YY" #dateOfNotification>
+      <input type="text" formControlName="dateOfNotification" placeholder="DD-MMM-YY" #dateOfNotification
+      value="{{user.dateOfNextNotification | date:'shortDate'}}">
     </label>
     <div class="form__error"
     *ngIf="registrationForm.get('dateOfNotification').errors &&
@@ -68,17 +71,25 @@
     </div>
   </div>  
 
+  <div class="form__field">
+    <label>
+      Information:
+      <input type="text" formControlName="information" placeholder="data" #information
+      value="{{user.information}}">
+    </label>
+  </div> 
+
   <div class="button_div">
     <button type="submit" [disabled]="registrationForm.invalid" 
-      (click)="update(name.value, age.value, birthday.value, dateOfLogin.value, dateOfNotification.value)">Submit</button>
+      (click)="update(name.value, age.value, birthday.value, dateOfLogin.value, dateOfNotification.value, information.value)">Update</button>
     <button type="button" (click)="formDir.resetForm({})">Reset</button>
   </div>
 </form>
 
-<div *ngIf="show">
+<!--<div *ngIf="show">
   Name: {{submitName}}<br>
   Age: {{submitAge}}<br>
   Birthday: {{submitBirthday}}<br>
   Date of login: {{submitDateOfLogin}}<br>
   Date of notification: {{submitDateOfNotification}}
-</div>
+</div>-->

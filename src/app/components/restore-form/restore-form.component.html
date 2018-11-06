@@ -1,4 +1,4 @@
-<form [formGroup]="restoreForm" (ngSubmit)="onSubmit()" #formDir="ngForm" class="form" class="form restore-form">
+<form [formGroup]="restoreForm" #formDir="ngForm" class="form" class="form restore-form">
   <div class="form__field">
     <label>
       Name*:
@@ -19,7 +19,7 @@
   <div class="form__field">
     <label>
       New password*:
-      <input type="text" formControlName="newPassword" placeholder="new password" #newPpassword>
+      <input type="text" formControlName="newPassword" placeholder="new password" #newPassword>
     </label>
     <div class="form__error"
     *ngIf="restoreForm.get('newPassword').errors &&
@@ -48,7 +48,8 @@
   </div> 
 
   <div class="button_div">
-    <button type="submit" [disabled]="restoreForm.invalid" routerLink="/user">Restore and log in</button>
+    <button type="submit" (click)="login(restoreForm.get('name').value, restoreForm.get('newPassword').value)"
+    [disabled]="restoreForm.invalid">Restore and log in</button>
     <button type="button" (click)="formDir.resetForm({})">Reset</button><br>
   </div>
 </form>

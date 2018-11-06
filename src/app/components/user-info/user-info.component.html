@@ -1,11 +1,10 @@
 <div class="user-info">
   <ul class="list-group">
-    <li class="list-group-item">Name: {{currentUser.getData()}}</li>
-    <li class="list-group-item">Age: </li>
-    <li class="list-group-item">Birthday: </li>
-    <li class="list-group-item">Date of login: </li>
-    <li class="list-group-item">Date of notification: </li>
-    <li class="list-group-item">Data: </li>
+    <li class="list-group-item">Name: {{user.name}}</li>
+    <li class="list-group-item">Age: {{user.age}}</li>
+    <li class="list-group-item">Birthday: {{user.dateOfBirth | date:'shortDate'}}</li>
+    <li class="list-group-item">Date of login: {{user.dateOfFirstLogin | date:'shortDate'}}</li>
+    <li class="list-group-item">Date of notification: {{user.dateOfNextNotification | date:'shortDate'}}</li>
+    <li class="list-group-item">Information: {{user.information}}</li>
   </ul>
 </div>
-<button type="button" (click)="click()">Click</button><br>

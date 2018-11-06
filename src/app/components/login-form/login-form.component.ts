@@ -4,9 +4,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NameValidator } from '../../validators/name.directive';
 import { PasswordValidator } from '../../validators/password.validator';
 
-import { UsersService } from '../../services/users.service';
 import { User } from '../../services/user';
-
+import { UsersService } from '../../services/users.service';
 import { CurrentUserService } from '../../services/current-user.service';
 import { Router } from '@angular/router';
 
@@ -35,34 +34,22 @@ export class LoginFormComponent implements OnInit {
       }],
       password: ['12345', [Validators.required, PasswordValidator]]
     });
+  }
 
-    //this.searchUser(this.loginForm.get('name').value, this.loginForm.get('password').value);
+  login(userName: string, userPassword: string) {
+    this.userService.loginUser(userName, userPassword)
+      .subscribe((data: User) => {
+        if (data) {
+          this.currentUser.setData(data);
+          this.router.navigate(['/user']);
+        } else {
+          alert('User not found. Check name and password.')
+        }
+      });
   }
 
   /*getUsers(): void {
     this.usersServise.getUsers()
       .subscribe(users => this.users = users);
   }*/
-  
-
-  login(userName: string, userPassword: string) {
-    this.userService.loginUser(this.loginForm.get('name').value, this.loginForm.get('password').value)
-      .subscribe((data: User) => {
-        this.currentUser.setData(data);
-        this.router.navigate(['/user']);
-        console.log(data);
-      });
-  }
-
-  /*onSubmit() {
-    
-
-    console.log(this.receivedUser);
-    if (this.receivedUser == null) {
-      console.log('error');
-    }
-    this.currentUser.setData(this.receivedUser);
-    console.log(this.currentUser.getData());
-  }*/
-
 }

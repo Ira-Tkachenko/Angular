@@ -15,6 +15,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 
 import { UsersService } from './services/users.service';
 import { CurrentUserService } from './services/current-user.service';
+import { PopupWindowComponent } from './components/popup-window/popup-window.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CurrentUserService } from './services/current-user.service';
     LoginPageComponent,
     RestoreFormComponent,
     UserPageComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    PopupWindowComponent
   ],
   imports: [
     BrowserModule,
