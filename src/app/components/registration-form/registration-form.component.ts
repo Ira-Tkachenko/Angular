@@ -11,8 +11,8 @@ import { User } from '../../services/user';
 import { CurrentUserService } from '../../services/current-user.service';
 import { UsersService } from '../../services/users.service';
 
-import {MatDialog} from '@angular/material';
-import { PopupWindowComponent } from '../popup-window/popup-window.component';
+//import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+//import { PopupWindowComponent } from '../popup-window/popup-window.component';
 
 @Component({
   selector: 'app-registration-form',
@@ -22,6 +22,7 @@ import { PopupWindowComponent } from '../popup-window/popup-window.component';
 export class RegistrationFormComponent implements OnInit {
   //public show:boolean = false;
   user: User; 
+  error: any;
   registrationForm: FormGroup;
   submitName = '';
   submitAge = '';
@@ -34,8 +35,8 @@ export class RegistrationFormComponent implements OnInit {
               private nameValidator: NameValidator,
               private currentUser: CurrentUserService,
               public userService: UsersService,
-              public dialog: MatDialog,
-              public popupWindow: PopupWindowComponent
+              //public dialog: MatDialog,
+              //public popupWindow: PopupWindowComponent
   ) {}
 
   ngOnInit() {
@@ -76,13 +77,14 @@ export class RegistrationFormComponent implements OnInit {
     this.userService.putUser(this.user.id, updateUser)
       .subscribe((data: User) => {
         this.currentUser.setData(data);
+        alert('The information was successfully updated.');
       });
 
-    this.openPopupWindow();  
+    //this.openPopupWindow();  
   }
 
-  openPopupWindow(): void {
-    const dialogRef = this.dialog.open(this.popupWindow, {
+  /*openPopupWindow(): void {
+    const dialogRef = this.dialog.open(PopupWindowComponent, {
       width: '250px',
       data: {name: this.user.name}
     });
@@ -90,6 +92,6 @@ export class RegistrationFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-  }
+  }*/
   
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { User } from './user';
 import { HttpHeaders } from '@angular/common/http';
@@ -28,7 +28,11 @@ export class UsersService {
 
   restoreUser(userName: string, user: User): Observable<User> {
   	userName = userName.trim();
-    return this.http.put<User>('http://localhost:3030/restore/' + userName, user);
+    return this.http.put<User>('http://localhost:3030/restore/' + userName, user).pipe(
+      catchError(err => {  
+        alert('User by name not found.');
+        return throwError(err);
+      }))
   } 
 
   putUser(id: number, user: User): Observable<User> {

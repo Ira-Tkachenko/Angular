@@ -36,20 +36,14 @@ export class RestoreFormComponent implements OnInit {
   }
 
   login(userName: string, userPassword: string) {
-    console.log(userName);
-
     const updateUser = {
       password: userPassword,
     }
 
     this.userService.restoreUser(userName, updateUser)
       .subscribe((data: User) => {
-        if (data) {
-          this.currentUser.setData(data);
-          this.router.navigate(['/user']);
-        } else {
-          alert('Username not found.')
-        }
+        this.currentUser.setData(data);
+        this.router.navigate(['/user']);
       });
   }
 
