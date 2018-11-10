@@ -1,4 +1,20 @@
-<app-login-form></app-login-form>
-<!--<div *ngFor="let user of users | async">
-  <p><b>{{user.name}}</b></p>
-</div>-->
+<section>
+  <ul class="nav nav-tabs">
+		<li *ngFor="let item of arrayTabs; let i = index;"
+		    [class.active]="i === idSelect"
+		    (click)="chandeTad(i)">
+		  <a>{{item}}</a>
+		</li>
+	</ul>
+  <div [ngSwitch]="idSelect">
+    <div *ngSwitchCase="0">
+      <app-login-form></app-login-form>
+    </div>
+    <div *ngSwitchCase="1">
+      <app-user-list></app-user-list>
+    </div>
+    <div *ngSwitchDefault>
+      <app-user-list></app-user-list>
+    </div>
+  </div>
+</section>

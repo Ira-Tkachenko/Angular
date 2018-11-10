@@ -21,6 +21,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 
 import { UsersService } from './services/users.service';
 import { CurrentUserService } from './services/current-user.service';
+import { UserListModule } from './user-list/user-list.module';
 //import { PopupWindowComponent } from './components/popup-window/popup-window.component';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { CurrentUserService } from './services/current-user.service';
     RestoreFormComponent,
     UserPageComponent,
     UserInfoComponent,
+    //UserListComponent
     //PopupWindowComponent
   ],
   imports: [
@@ -39,6 +41,7 @@ import { CurrentUserService } from './services/current-user.service';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    UserListModule
     //MatNativeDateModule,
     //MatDialogModule
     //DemoMaterialModule

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CurrentUserService } from '../../services/current-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-page',
@@ -9,13 +11,20 @@ export class UserPageComponent implements OnInit {
   public idSelect: number;
   public arrayTabs: string[] = ['User information', 'Update user'];
 
-  constructor() { }
+  constructor(private currentUser: CurrentUserService,
+              private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
   public chandeTad(id: number): void {
     this.idSelect = id
+  }
+
+  logOut() {
+    this.currentUser.clearData();
+    this.router.navigate(['/login']);
   }
 
 }

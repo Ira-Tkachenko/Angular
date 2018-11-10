@@ -93,6 +93,15 @@ app.put('/restore/:name', (req, res, next) => {
   res.send(users[index]);
 });
 
+app.get('/users/search/:name', (req, res, next) => {
+  const userName = req.params["name"];
+  const usersByName = users.filter(item => item.name == userName);
+  /*if (!!usersByName) {
+    next(res);
+  }*/
+  res.send(usersByName);
+});
+
 app.delete('/users/:id', (req, res, next) => {
   const userId = req.params["id"];
   const index = users.findIndex(item => item.id == userId);

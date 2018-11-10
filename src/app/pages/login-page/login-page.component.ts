@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService } from '../../services/users.service';
-import { User } from '../../services/user';
 
 @Component({
   selector: 'app-login-page',
@@ -8,14 +6,16 @@ import { User } from '../../services/user';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  //users: User[];
+  public idSelect: number;
+  public arrayTabs: string[] = ['User login', 'User list'];
 
-  constructor(public userService: UsersService) { }
-
-  //users = this.userService.getUsers();
+  constructor() { }
 
   ngOnInit() {
-  	//console.log(this.users);
+  }
+
+  public chandeTad(id: number): void {
+    this.idSelect = id
   }
 
 }

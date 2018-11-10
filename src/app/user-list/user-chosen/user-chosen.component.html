@@ -1,0 +1,23 @@
+<div class="wrap well">
+  <div class="well">
+    <div>
+      <span>Name:</span>
+      <span>{{user?.name}}</span>
+    </div>
+    <div>
+        <span>Age:</span>
+        <span>{{user?.age}}</span>
+    </div>
+    <div>
+      <span>Birthday:</span>
+      <span>{{user?.dateOfBirth | date:'shortDate'}}</span>
+    </div>
+    <div>
+      <span>Information:</span>
+      <span class="longText">{{user?.information}}</span>
+    </div>
+  </div>
+  <div class="glyph well" [class.rotation]="rotate" (click)="addUserList()">
+    <span class="glyphicon glyphicon-chevron-down"></span>
+  </div>
+</div>

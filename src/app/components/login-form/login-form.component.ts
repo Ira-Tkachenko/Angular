@@ -19,10 +19,10 @@ export class LoginFormComponent implements OnInit {
   receivedUser: User;
 
   constructor(private fb: FormBuilder, 
-             private nameValidator: NameValidator, 
-             public userService: UsersService,
-             private currentUser: CurrentUserService,
-             private router: Router
+              private nameValidator: NameValidator, 
+              public userService: UsersService,
+              private currentUser: CurrentUserService,
+              private router: Router
   ) { }
 
   //users = this.userService.getUsers();

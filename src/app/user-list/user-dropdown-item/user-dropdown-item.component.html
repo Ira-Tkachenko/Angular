@@ -1,0 +1,26 @@
+<div>
+  <div>
+    <span>Name:</span>
+    <span>{{user?.name}}</span>
+  </div>
+  <div>
+      <span>Age:</span>
+      <span>{{user?.age}}</span>
+  </div>
+  <div>
+      <span>Birthday:</span>
+      <span>{{user?.dateOfBirth | date:'shortDate'}}</span>
+  </div>
+  <div>
+      <span>Date of login:</span>
+      <span>{{user?.dateOfFirstLogin | date:'shortDate'}}</span>
+  </div>
+  <div>
+      <span>Date of notificaton:</span>
+      <span>{{user?.dateOfNextNotification | date:'shortDate'}}</span>
+  </div>
+  <div>
+    <span>Full information:</span>
+    <span>{{user?.information}}</span>
+  </div>
+</div>

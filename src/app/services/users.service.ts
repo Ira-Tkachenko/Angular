@@ -28,7 +28,7 @@ export class UsersService {
 
   restoreUser(userName: string, user: User): Observable<User> {
   	userName = userName.trim();
-    return this.http.put<User>('http://localhost:3030/restore/' + userName, user).pipe(
+    return this.http.put<User>(`http://localhost:3030/restore/${userName}`, user).pipe(
       catchError(err => {  
         alert('User by name not found.');
         return throwError(err);
@@ -36,7 +36,16 @@ export class UsersService {
   } 
 
   putUser(id: number, user: User): Observable<User> {
-    return this.http.put<User>('http://localhost:3030/users/' + id, user);
+    return this.http.put<User>(`http://localhost:3030/users/${id}`, user);
+  } 
+
+  getUsersByName(userName: string): Observable<User[]> {
+    userName = userName.trim();
+    return this.http.get<User[]>(`http://localhost:3030/users/search/${userName}`).pipe(
+      catchError(err => {  
+        alert('Users by name not found.');
+        return throwError(err);
+      }))
   } 
 
   /*searchUsers(term: string): Observable<User[]> {

@@ -15,7 +15,7 @@ export class CurrentUserService {
     return this.data;
   }
 
-  private clearData(){
+  public clearData(){
     this.data = undefined;
   }
 }

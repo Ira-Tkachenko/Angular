@@ -1,0 +1,15 @@
+<app-user-chosen [user]="user" (addList)="addUserList($event)"></app-user-chosen>
+<div *ngIf="rotate" class="over">
+  <div class="wrap well">
+    <input type="text" placeholder="search by name" (focus)="InputInFocus()" [formControl]="nameOfUser">
+    <div class="glyph well" (click)="searchUsers()">
+      <span class="glyphicon glyphicon-search"></span>
+    </div>
+  </div>
+  
+  <app-user-dropdown-list class="list-group">
+    <app-user-dropdown-item class="list-group-item" (click)="UserSelected(user)"
+    *ngFor="let user of users" [user]="user">
+    </app-user-dropdown-item>
+  </app-user-dropdown-list>
+</div> 

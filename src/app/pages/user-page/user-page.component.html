@@ -6,7 +6,7 @@
 		  <a>{{item}}</a>
 		</li>
     <li>
-      <button type="button" class="btn btn-success" type="submit" routerLink="/login">Log out</button>
+      <button type="button" class="btn btn-success" type="submit" (click)="logOut()">Log out</button>
     </li>
 	</ul>
   <div [ngSwitch]="idSelect">
