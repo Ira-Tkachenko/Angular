@@ -1,0 +1,26 @@
+<section>
+  <ul class="nav nav-tabs">
+		<li *ngFor="let item of arrayTabs; let i = index;"
+		    [class.active]="i === idSelect"
+		    (click)="chandeTad(i)">
+		  <a>{{item | translate}}</a>
+		</li>
+	</ul>
+  <div [ngSwitch]="idSelect">
+    <div *ngSwitchCase="0">
+      <app-user-list></app-user-list>
+    </div>
+    <div *ngSwitchCase="1">
+      <app-edit-form></app-edit-form>
+    </div>
+    <div *ngSwitchCase="2">
+      <app-add-form></app-add-form> 
+    </div>
+    <div *ngSwitchCase="3">
+      <app-delete-user></app-delete-user>
+    </div>
+    <div *ngSwitchDefault>
+      <app-user-list></app-user-list>
+    </div>
+  </div>
+</section>

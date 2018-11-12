@@ -1,0 +1,103 @@
+<form [formGroup]="addForm" #formDir="ngForm" class="form">
+  <div class="form__field">
+    <label>
+      {{'Name' | translate}}*:
+      <input type="text" formControlName="name" placeholder="{{'Baton Batonov' | translate}}" #name>
+    </label>
+    <div class="form__check" 
+    *ngIf="addForm.get('name').pending">
+        {{'Validating' | translate}}...
+    </div>
+    <div class="form__error"
+    *ngIf="addForm.get('name').errors &&
+          addForm.get('name').dirty &&
+          addForm.get('name').errors?.validName">
+     {{'There must be one or two english words with a large first letter' | translate}}!
+    </div>
+  </div>
+
+  <div class="form__field">
+    <label>
+      {{'Age' | translate}}:
+      <input type="text" formControlName="age" placeholder="[18-65]" #age>
+    </label>
+    <div class="form__error"
+    *ngIf="addForm.get('age').errors &&
+          addForm.get('age').dirty &&
+          addForm.get('age').errors?.validAge">
+      {{'The range of numbers must be from 18 till 65' | translate}}!
+    </div>
+  </div>
+
+  <div class="form__field">
+    <label>
+      {{'Password' | translate}}*:
+      <input type="text" formControlName="password" placeholder="{{'Password' | translate}}" #password>
+    </label>
+    <div class="form__error"
+    *ngIf="addForm.get('password').errors &&
+          addForm.get('password').dirty &&
+          addForm.get('password').errors?.validPassword">
+      {{'The length must be at least four characters without spaces' | translate}}.
+    </div>
+  </div> 
+
+  <div class="form__field">
+    <label>
+      {{'Birthday' | translate}}:
+      <input type="text" formControlName="birthday" placeholder="YYYY/MM/DD" #birthday>
+    </label>
+    <div class="form__error"
+    *ngIf="addForm.get('birthday').errors &&
+          addForm.get('birthday').dirty &&
+          addForm.get('birthday').errors?.validDateSlash">
+      {{'Date format must be (YYYY/MM/DD)' | translate}}!
+    </div>
+  </div>
+
+  <div class="form__field">
+    <label>
+      {{'Date of login' | translate}}:
+      <input type="text" formControlName="dateOfLogin" placeholder="DD MMMM YYYY" #dateOfLogin>
+    </label>
+    <div class="form__error"
+    *ngIf="addForm.get('dateOfLogin').errors &&
+          addForm.get('dateOfLogin').dirty &&
+          addForm.get('dateOfLogin').errors?.validDateSpace">
+      {{'Date format must be (DD MMMM YYYY)' | translate}}!
+    </div>
+  </div>  
+
+  <div class="form__field">
+    <label>
+      {{'Date of notification' | translate}}:
+      <input type="text" formControlName="dateOfNotification" placeholder="DD-MMM-YY" #dateOfNotification>
+    </label>
+    <div class="form__error"
+    *ngIf="addForm.get('dateOfNotification').errors &&
+          addForm.get('dateOfNotification').dirty &&
+          addForm.get('dateOfNotification').errors?.validDateDash">
+      {{'Date format must be (DD-MMM-YY)' | translate}}!
+    </div>
+  </div>  
+
+  <div class="form__field">
+    <label>
+      {{'Information' | translate}}:
+      <input type="text" formControlName="information" placeholder="{{'Data' | translate}}" #information>
+    </label>
+  </div> 
+
+  <div class="form__field">
+    <label>
+      {{'Role' | translate}}:
+      <input type="text" formControlName="role" placeholder="{{'Role' | translate}}" #role  placeholder="role">
+    </label>
+  </div>
+
+  <div class="button_div">
+    <button type="submit" [disabled]="addForm.invalid" 
+      (click)="addUser(name.value, age.value, password.value, birthday.value, dateOfLogin.value, dateOfNotification.value, information.value, role.value)">{{'Add' | translate}}</button>
+    <button type="button" (click)="formDir.resetForm({})">{{'Reset' | translate}}</button>
+  </div>
+</form>

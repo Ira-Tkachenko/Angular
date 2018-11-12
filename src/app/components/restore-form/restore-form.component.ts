@@ -44,7 +44,10 @@ export class RestoreFormComponent implements OnInit {
       .subscribe((data: User) => {
         this.currentUser.setData(data);
         this.router.navigate(['/user']);
-      });
+      }, () => {
+          alert('User by name not found');
+        }
+      );
   }
 
 }

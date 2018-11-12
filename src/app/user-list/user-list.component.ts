@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
+import { UserForAdminService } from '../services/user-for-admin.service';
 import { FormControl } from '@angular/forms';
 import { User } from '../services/user';
 
@@ -18,7 +19,9 @@ export class UserListComponent implements OnInit {
   nameOfUser: FormControl;
   rotate: boolean;
 
-  constructor(public userService: UsersService) { }
+  constructor(public userService: UsersService,
+              public userForAdminService: UserForAdminService
+  ) { }
 
   ngOnInit() { 
     this.nameOfUser = new FormControl('');
@@ -28,7 +31,7 @@ export class UserListComponent implements OnInit {
     this.rotate = rotate;
   }
 
-  InputInFocus() {
+  inputInFocus() {
     this.getAllUsers();
 
     this.notInFound = false;
@@ -48,16 +51,19 @@ export class UserListComponent implements OnInit {
     this.userService.getUsersByName(this.nameOfUser.value)
     .subscribe((users: User[]) => 
       this.users = users,
+
       () => {
+        alert('Users by name not found.');
         this.notInFound = true;
         this.users = [];
       }
     );
   }
   
-  UserSelected(user: User) {  
+  userSelected(user: User) {  
     this.inFocus = false;
     this.user = user;
+    this.userForAdminService.setData(this.user);
   }
 
 }

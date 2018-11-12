@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-page',
@@ -7,15 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
   public idSelect: number;
-  public arrayTabs: string[] = ['User login', 'User list'];
+  public arrayTabs: string[] = ['User login', 'Data'];
 
-  constructor() { }
+  constructor(private translate: TranslateService) { }
 
   ngOnInit() {
   }
 
   public chandeTad(id: number): void {
     this.idSelect = id
+  }
+
+  switchLanguage(event) {
+    this.translate.use(event.target.value);
   }
 
 }

@@ -1,19 +1,19 @@
 <div class="wrap well">
   <div class="well">
     <div>
-      <span>Name:</span>
+      <span>{{'Name' | translate}}:</span>
       <span>{{user?.name}}</span>
     </div>
     <div>
-        <span>Age:</span>
+        <span>{{'Age' | translate}}:</span>
         <span>{{user?.age}}</span>
     </div>
     <div>
-      <span>Birthday:</span>
+      <span>{{'Birthday' | translate}}:</span>
       <span>{{user?.dateOfBirth | date:'shortDate'}}</span>
     </div>
     <div>
-      <span>Information:</span>
+      <span>{{'Information' | translate}}:</span>
       <span class="longText">{{user?.information}}</span>
     </div>
   </div>

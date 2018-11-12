@@ -1,6 +1,7 @@
 .wrap.well {
   width: 300px;
-  margin-bottom: 2px;
+  margin: 2px;
+  padding: 5px;
 }
 
 .glyph.well {
@@ -11,7 +12,6 @@
 
 .well {
   display: inline-block;
-	width: 200px;
 }
 
 .list-group-item {
@@ -27,7 +27,7 @@ input {
 }
 
 .over {
-	height: 400px;
+	height: 300px;
 	width: 320px;
 	overflow: auto;
 }

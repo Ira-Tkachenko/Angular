@@ -1,10 +1,10 @@
 <div class="user-info">
   <ul class="list-group">
-    <li class="list-group-item">Name: {{user.name}}</li>
-    <li class="list-group-item">Age: {{user.age}}</li>
-    <li class="list-group-item">Birthday: {{user.dateOfBirth | date:'shortDate'}}</li>
-    <li class="list-group-item">Date of login: {{user.dateOfFirstLogin | date:'shortDate'}}</li>
-    <li class="list-group-item">Date of notification: {{user.dateOfNextNotification | date:'shortDate'}}</li>
-    <li class="list-group-item">Information: {{user.information}}</li>
+    <li class="list-group-item">{{'Name' | translate}}: {{user.name}}</li>
+    <li class="list-group-item">{{'Age' | translate}}: {{user.age}}</li>
+    <li class="list-group-item">{{'Birthday' | translate}}: {{user.dateOfBirth | date:'shortDate'}}</li>
+    <li class="list-group-item">{{'Date of login' | translate}}: {{user.dateOfFirstLogin | date:'shortDate'}}</li>
+    <li class="list-group-item">{{'Date of notification' | translate}}: {{user.dateOfNextNotification | date:'shortDate'}}</li>
+    <li class="list-group-item">{{'Information' | translate}}: {{user.information}}</li>
   </ul>
 </div>

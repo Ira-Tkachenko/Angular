@@ -15,6 +15,7 @@ interface User {
     dateOfFirstLogin: string;
     dateOfNextNotification: string;
     information: string;
+    role: string;
 }
 
 app.use(bodyParser.json());
@@ -42,7 +43,8 @@ app.post('/users/add', (req, res, next) => {
     dateOfBirth: req.body.dateOfBirth,
     dateOfFirstLogin: (new Date).toISOString(),
     dateOfNextNotification: (new Date).toISOString(),
-    information: req.body.information
+    information: req.body.information,
+    role: req.body.role
   }
   users.push(user);
   res.send(user);
@@ -69,7 +71,8 @@ app.put('/users/:id', (req, res, next) => {
     dateOfBirth: req.body.dateOfBirth||users[index].dateOfBirth,
     dateOfFirstLogin: req.body.dateOfFirstLogin||users[index].dateOfFirstLogin,
     dateOfNextNotification: req.body.dateOfNextNotification||users[index].dateOfNextNotification,
-    information: req.body.information||users[index].information
+    information: req.body.information||users[index].information,
+    role: req.body.role||users[index].role
   }
   res.send(users[index]);
 });
@@ -88,7 +91,8 @@ app.put('/restore/:name', (req, res, next) => {
     dateOfBirth: req.body.dateOfBirth||users[index].dateOfBirth,
     dateOfFirstLogin: req.body.dateOfFirstLogin||users[index].dateOfFirstLogin,
     dateOfNextNotification: req.body.dateOfNextNotification||users[index].dateOfNextNotification,
-    information: req.body.information||users[index].information
+    information: req.body.information||users[index].information,
+    role: req.body.role||users[index].role
   }
   res.send(users[index]);
 });

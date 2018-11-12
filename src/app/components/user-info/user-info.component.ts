@@ -14,7 +14,12 @@ export class UserInfoComponent implements OnInit {
   constructor(private currentUser: CurrentUserService) { }
 
   ngOnInit() {
-    this.user = this.currentUser.getData(); 
+  	if (this.currentUser.getData()) {
+  		this.user = this.currentUser.getData(); 
+  	} else {
+  		this.user = {};
+  	}
+    
   }
 
 }

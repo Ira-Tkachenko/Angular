@@ -3,11 +3,17 @@
 		<li *ngFor="let item of arrayTabs; let i = index;"
 		    [class.active]="i === idSelect"
 		    (click)="chandeTad(i)">
-		  <a>{{item}}</a>
+		  <a>{{item | translate}}</a>
 		</li>
     <li>
-      <button type="button" class="btn btn-success" type="submit" (click)="logOut()">Log out</button>
+      <button type="button" class="btn btn-success" type="submit" (click)="logOut()">{{'Log out' | translate}}</button>
     </li>
+    <div class="form-group">
+      <select class="form-control" matNativeControl (change)="switchLanguage($event)">
+        <option value="en">{{'English' | translate}}</option>
+        <option value="ru">{{'Russian' | translate}}</option>
+      </select>
+    </div>
 	</ul>
   <div [ngSwitch]="idSelect">
     <div *ngSwitchCase="0">
@@ -15,6 +21,11 @@
     </div>
     <div *ngSwitchCase="1">
       <app-registration-form></app-registration-form>
+    </div>
+    <div *ngSwitchCase="2">
+      <div *ngIf="adminRole">
+        <app-admin-page></app-admin-page>
+      </div>
     </div>
     <div *ngSwitchDefault>
       <app-user-info></app-user-info>

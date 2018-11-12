@@ -10,10 +10,12 @@ import { NameValidator } from '../../validators/name.directive';
 import { User } from '../../services/user';
 import { CurrentUserService } from '../../services/current-user.service';
 import { UsersService } from '../../services/users.service';
+//import * as moment from 'moment';
 
 //import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 //import { PopupWindowComponent } from '../popup-window/popup-window.component';
 
+//!!!update form for current user!!!
 @Component({
   selector: 'app-registration-form',
   templateUrl: './registration-form.component.html',
@@ -71,7 +73,8 @@ export class RegistrationFormComponent implements OnInit {
         dateOfBirth: birthday,
         dateOfFirstLogin: dateOfLogin,
         dateOfNextNotification: dateOfNotification,
-        information: information
+        information: information,
+        role: this.user.role
     }
 
     this.userService.putUser(this.user.id, updateUser)

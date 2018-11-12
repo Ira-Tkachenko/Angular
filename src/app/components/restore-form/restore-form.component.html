@@ -1,55 +1,55 @@
 <form [formGroup]="restoreForm" #formDir="ngForm" class="form" class="form restore-form">
   <div class="form__field">
     <label>
-      Name*:
-      <input type="text" formControlName="name" placeholder="Baton Batonov" #name>
+      {{'Name' | translate}}*:
+      <input type="text" formControlName="name" placeholder="{{'Baton batonov' | translate}}" #name>
     </label>
     <div class="form__check" 
     *ngIf="restoreForm.get('name').pending">
-        Validating...
+      {{'Validating' | translate}}...
     </div>
     <div class="form__error"
     *ngIf="restoreForm.get('name').errors &&
           restoreForm.get('name').dirty &&
           restoreForm.get('name').errors?.validName">
-      There must be one or two english words with a large first letter!
+      {{'There must be one or two english words with a large first letter' | translate}}!
     </div>
   </div>
 
   <div class="form__field">
     <label>
-      New password*:
-      <input type="text" formControlName="newPassword" placeholder="new password" #newPassword>
+      {{'New password' | translate}}*:
+      <input type="text" formControlName="newPassword" placeholder="{{'New password' | translate}}" #newPassword>
     </label>
     <div class="form__error"
     *ngIf="restoreForm.get('newPassword').errors &&
           restoreForm.get('newPassword').dirty &&
           restoreForm.get('newPassword').errors?.validPassword">
-      The length must be at least four characters without spaces.
+      {{'The length must be at least four characters without spaces' | translate}}.
     </div>
   </div> 
 
   <div class="form__field">
     <label>
-      Repeat password*:
-      <input type="text" formControlName="repeatedPassword" placeholder="repeat password" #repeatedPassword>
+      {{'Repeat password' | translate}}*:
+      <input type="text" formControlName="repeatedPassword" placeholder="{{'Repeat password' | translate}}" #repeatedPassword>
     </label>
     <div class="form__error"
     *ngIf="restoreForm.get('repeatedPassword').errors &&
           restoreForm.get('repeatedPassword').dirty &&
           restoreForm.get('repeatedPassword').errors?.validPassword">
-      The length must be at least four characters without spaces.
+      {{'The length must be at least four characters without spaces' | translate}}.
     </div>
     <div class="form__error"
     *ngIf="restoreForm.get('repeatedPassword').dirty &&
           restoreForm.get('newPassword').value != restoreForm.get('repeatedPassword').value">
-      Repeated password doesn't match.
+      {{'Repeated password does not match' | translate}}.
     </div>
   </div> 
 
   <div class="button_div">
     <button type="submit" (click)="login(restoreForm.get('name').value, restoreForm.get('newPassword').value)"
-    [disabled]="restoreForm.invalid">Restore and log in</button>
-    <button type="button" (click)="formDir.resetForm({})">Reset</button><br>
+    [disabled]="restoreForm.invalid">{{'Restore and log in' | translate}}</button>
+    <button type="button" (click)="formDir.resetForm({})">{{'Reset' | translate}}</button> <br>
   </div>
 </form>

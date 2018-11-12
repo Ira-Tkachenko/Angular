@@ -1,26 +1,26 @@
 <div>
   <div>
-    <span>Name:</span>
+    <span>{{'Name' | translate}}:</span>
     <span>{{user?.name}}</span>
   </div>
   <div>
-      <span>Age:</span>
+      <span>{{'Age' | translate}}:</span>
       <span>{{user?.age}}</span>
   </div>
   <div>
-      <span>Birthday:</span>
+      <span>{{'Birthday' | translate}}:</span>
       <span>{{user?.dateOfBirth | date:'shortDate'}}</span>
   </div>
   <div>
-      <span>Date of login:</span>
+      <span>{{'Date of login' | translate}}:</span>
       <span>{{user?.dateOfFirstLogin | date:'shortDate'}}</span>
   </div>
   <div>
-      <span>Date of notificaton:</span>
+      <span>{{'Date of notification' | translate}}:</span>
       <span>{{user?.dateOfNextNotification | date:'shortDate'}}</span>
   </div>
   <div>
-    <span>Full information:</span>
+    <span>{{'Full information' | translate}}:</span>
     <span>{{user?.information}}</span>
   </div>
 </div>

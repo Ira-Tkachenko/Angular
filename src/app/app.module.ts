@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient  } from '@angular/common/http';
 
 //import { MatDialogModule, MatDialog, MatDialogRef  } from '@angular/material/dialog';
 //import { MatDialogModule, MatDialogRef } from '@angular/material';
@@ -21,8 +21,19 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 
 import { UsersService } from './services/users.service';
 import { CurrentUserService } from './services/current-user.service';
+import { UserForAdminService } from './services/user-for-admin.service';
 import { UserListModule } from './user-list/user-list.module';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { EditFormComponent } from './components/edit-form/edit-form.component';
+import { AddFormComponent } from './components/add-form/add-form.component';
+import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 //import { PopupWindowComponent } from './components/popup-window/popup-window.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -33,6 +44,10 @@ import { UserListModule } from './user-list/user-list.module';
     RestoreFormComponent,
     UserPageComponent,
     UserInfoComponent,
+    AdminPageComponent,
+    EditFormComponent,
+    AddFormComponent,
+    DeleteUserComponent,
     //UserListComponent
     //PopupWindowComponent
   ],
@@ -41,7 +56,14 @@ import { UserListModule } from './user-list/user-list.module';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    UserListModule
+    UserListModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
     //MatNativeDateModule,
     //MatDialogModule
     //DemoMaterialModule
@@ -49,6 +71,7 @@ import { UserListModule } from './user-list/user-list.module';
   providers: [
     UsersService,
     CurrentUserService, 
+    UserForAdminService,
     //PopupWindowComponent, MatDialogRef
   ],
   bootstrap: [AppComponent]

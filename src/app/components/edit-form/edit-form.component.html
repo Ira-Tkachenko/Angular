@@ -1,17 +1,17 @@
-<form [formGroup]="registrationForm" #formDir="ngForm" class="form">
+<form [formGroup]="updateForm" #formDir="ngForm" class="form">
   <div class="form__field">
     <label>
       {{'Name' | translate}}*:
       <input type="text" formControlName="name" placeholder="{{'Baton Batonov' | translate}}" #name value="{{user.name}}">
     </label>
     <div class="form__check" 
-    *ngIf="registrationForm.get('name').pending">
+    *ngIf="updateForm.get('name').pending">
         {{'Validating' | translate}}...
     </div>
     <div class="form__error"
-    *ngIf="registrationForm.get('name').errors &&
-          registrationForm.get('name').dirty &&
-          registrationForm.get('name').errors?.validName">
+    *ngIf="updateForm.get('name').errors &&
+          updateForm.get('name').dirty &&
+          updateForm.get('name').errors?.validName">
      {{'There must be one or two english words with a large first letter' | translate}}!
     </div>
   </div>
@@ -22,12 +22,25 @@
       <input type="text" formControlName="age" placeholder="[18-65]" #age value="{{user.age}}">
     </label>
     <div class="form__error"
-    *ngIf="registrationForm.get('age').errors &&
-          registrationForm.get('age').dirty &&
-          registrationForm.get('age').errors?.validAge">
+    *ngIf="updateForm.get('age').errors &&
+          updateForm.get('age').dirty &&
+          updateForm.get('age').errors?.validAge">
       {{'The range of numbers must be from 18 till 65' | translate}}!
     </div>
   </div>
+
+  <div class="form__field">
+    <label>
+      {{'Password' | translate}}:
+      <input type="text" formControlName="password" placeholder="{{'Password' | translate}}" #password  value="{{user.password}}">
+    </label>
+    <div class="form__error"
+    *ngIf="updateForm.get('password').errors &&
+          updateForm.get('password').dirty &&
+          updateForm.get('password').errors?.validPassword">
+      {{'The length must be at least four characters without spaces' | translate}}.
+    </div>
+  </div> 
 
   <div class="form__field">
     <label>
@@ -36,9 +49,9 @@
       value="{{user.dateOfBirth | date:'shortDate'}}">
     </label>
     <div class="form__error"
-    *ngIf="registrationForm.get('birthday').errors &&
-          registrationForm.get('birthday').dirty &&
-          registrationForm.get('birthday').errors?.validDateSlash">
+    *ngIf="updateForm.get('birthday').errors &&
+          updateForm.get('birthday').dirty &&
+          updateForm.get('birthday').errors?.validDateSlash">
       {{'Date format must be (YYYY/MM/DD)' | translate}}!
     </div>
   </div>
@@ -50,9 +63,9 @@
       value="{{user.dateOfFirstLogin | date:'shortDate'}}">
     </label>
     <div class="form__error"
-    *ngIf="registrationForm.get('dateOfLogin').errors &&
-          registrationForm.get('dateOfLogin').dirty &&
-          registrationForm.get('dateOfLogin').errors?.validDateSpace">
+    *ngIf="updateForm.get('dateOfLogin').errors &&
+          updateForm.get('dateOfLogin').dirty &&
+          updateForm.get('dateOfLogin').errors?.validDateSpace">
       {{'Date format must be (DD MMMM YYYY)' | translate}}!
     </div>
   </div>  
@@ -64,9 +77,9 @@
       value="{{user.dateOfNextNotification | date:'shortDate'}}">
     </label>
     <div class="form__error"
-    *ngIf="registrationForm.get('dateOfNotification').errors &&
-          registrationForm.get('dateOfNotification').dirty &&
-          registrationForm.get('dateOfNotification').errors?.validDateDash">
+    *ngIf="updateForm.get('dateOfNotification').errors &&
+          updateForm.get('dateOfNotification').dirty &&
+          updateForm.get('dateOfNotification').errors?.validDateDash">
       {{'Date format must be (DD-MMM-YY)' | translate}}!
     </div>
   </div>  
@@ -74,22 +87,21 @@
   <div class="form__field">
     <label>
       {{'Information' | translate}}:
-      <input type="text" formControlName="information" placeholder="data" #information
+      <input type="text" formControlName="information" placeholder="{{'Data' | translate}}" #information
       value="{{user.information}}">
     </label>
   </div> 
 
+  <div class="form__field">
+    <label>
+      {{'Role' | translate}}:
+      <input type="text" formControlName="role" placeholder="{{'Role' | translate}}" #role  placeholder="role" value="{{user.role}}">
+    </label>
+  </div>
+
   <div class="button_div">
-    <button type="submit" [disabled]="registrationForm.invalid" 
-      (click)="update(name.value, age.value, birthday.value, dateOfLogin.value, dateOfNotification.value, information.value)">{{'Update' | translate}}</button>
+    <button type="submit" [disabled]="updateForm.invalid" 
+      (click)="update(name.value, age.value, password.value, birthday.value, dateOfLogin.value, dateOfNotification.value, information.value, role.value)">{{'Update' | translate}}</button>
     <button type="button" (click)="formDir.resetForm({})">{{'Reset' | translate}}</button>
   </div>
 </form>
-
-<!--<div *ngIf="show">
-  Name: {{submitName}}<br>
-  Age: {{submitAge}}<br>
-  Birthday: {{submitBirthday}}<br>
-  Date of login: {{submitDateOfLogin}}<br>
-  Date of notification: {{submitDateOfNotification}}
-</div>-->
