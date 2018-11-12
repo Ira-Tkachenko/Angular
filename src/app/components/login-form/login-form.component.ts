@@ -29,10 +29,10 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      name: ['Admin', {validators: [Validators.required],
+      name: ['', {validators: [Validators.required],
         asyncValidators: [this.nameValidator.validate.bind(this.nameValidator)]
       }],
-      password: ['0000', [Validators.required, PasswordValidator]]
+      password: ['', [Validators.required, PasswordValidator]]
     });
   }
 
