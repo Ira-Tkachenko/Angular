@@ -39,11 +39,8 @@
   "Data": "Информация",
   "Add": "Добавить",
   "Select user for delete": "Выберите пользователя для удаления",
-  "": "",
-  "": "",
-  "": "",
-  "": "",
-  "": "",
-  "": "",
-  "": ""
+  "Author: Irina Tkachenko": "Автор: Ирина Ткаченко (не наоборот!)",
+  "It was a great practice": "Это была классная практика! Мне понравилось!",
+  "The information was successfully updated.": "Информация была успешно обновлена",
+  "The user successfully deleted.": "Пользователь успешно удалён"
 }  

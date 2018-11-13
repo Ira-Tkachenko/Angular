@@ -2,6 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { UserForAdminService } from '../../services/user-for-admin.service';
 import { User } from '../../services/user';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-delete-user',
@@ -14,7 +15,8 @@ export class DeleteUserComponent implements OnInit, DoCheck {
 	canDelete: boolean;
 
   constructor(public userService: UsersService,
-  						public userForAdminService: UserForAdminService
+  						public userForAdminService: UserForAdminService,
+              public translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -37,7 +39,9 @@ export class DeleteUserComponent implements OnInit, DoCheck {
   		.subscribe((data: User) => {
         if (data) {
           this.userForAdminService.clearData();
-          alert('The user successfully deleted.');
+          this.translate.get('The user successfully deleted.').subscribe((res: string) => {
+            alert(res);
+          });
         } else {
           alert('User not found.');
         }

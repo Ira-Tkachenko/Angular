@@ -4,6 +4,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient  } from '@angular/common/http';
 
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+//import { EffectsModule } from '@ngrx/effects';
+
+/*import { reducer as langReducer } from './reducers/language.reducer';
+import { reducer as usersReducer } from './reducers/users.reducer';
+import { reducer as profileReducer } from './reducers/profile.reduser';
+import { UsersEffect } from './effects/users.effect';
+import { ProfileEffect } from './effects/profile.effect';*/
+
 //import { MatDialogModule, MatDialog, MatDialogRef  } from '@angular/material/dialog';
 //import { MatDialogModule, MatDialogRef } from '@angular/material';
 //import { MatNativeDateModule } from '@angular/material';
@@ -63,7 +73,14 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+   /*StoreModule.forRoot({
+      lang: langReducer,
+      users: usersReducer,
+      profile: profileReducer
+    }),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([UsersEffect, ProfileEffect])*/
     //MatNativeDateModule,
     //MatDialogModule
     //DemoMaterialModule

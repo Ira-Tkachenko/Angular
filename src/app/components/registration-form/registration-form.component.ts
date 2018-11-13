@@ -10,6 +10,7 @@ import { NameValidator } from '../../validators/name.directive';
 import { User } from '../../services/user';
 import { CurrentUserService } from '../../services/current-user.service';
 import { UsersService } from '../../services/users.service';
+import {TranslateService} from '@ngx-translate/core';
 //import * as moment from 'moment';
 
 //import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -37,6 +38,7 @@ export class RegistrationFormComponent implements OnInit {
               private nameValidator: NameValidator,
               private currentUser: CurrentUserService,
               public userService: UsersService,
+              public translate: TranslateService
               //public dialog: MatDialog,
               //public popupWindow: PopupWindowComponent
   ) {}
@@ -80,7 +82,9 @@ export class RegistrationFormComponent implements OnInit {
     this.userService.putUser(this.user.id, updateUser)
       .subscribe((data: User) => {
         this.currentUser.setData(data);
-        alert('The information was successfully updated.');
+        this.translate.get('The information was successfully updated.').subscribe((res: string) => {
+          alert(res);
+        });
       });
 
     //this.openPopupWindow();  

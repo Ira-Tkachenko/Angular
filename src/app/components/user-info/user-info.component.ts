@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { User } from '../../services/user';
-import { CurrentUserService } from '../../services/current-user.service';
+import { CurrentUserService } from '../../services/current-user.service'; 
 
 @Component({
   selector: 'app-user-info',
