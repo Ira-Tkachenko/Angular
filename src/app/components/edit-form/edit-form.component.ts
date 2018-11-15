@@ -11,6 +11,7 @@ import { PasswordValidator } from '../../validators/password.validator';
 import { User } from '../../services/user';
 import { UserForAdminService } from '../../services/user-for-admin.service';
 import { UsersService } from '../../services/users.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-edit-form',
@@ -25,13 +26,16 @@ export class EditFormComponent implements OnInit {
               private nameValidator: NameValidator,
               private userForAdminService: UserForAdminService,
               public userService: UsersService,
+              public translate: TranslateService
   ) {}
 
   ngOnInit() {
   	if (this.userForAdminService.getData()) {
   		this.user = this.userForAdminService.getData(); 
   	} else {
-  		alert('Please choose the user on the first tab.');
+      this.translate.get('Please choose the user on the first tab.').subscribe((res: string) => {
+          alert(res);
+        });
   		this.user = {};
   	}
     
@@ -66,7 +70,9 @@ export class EditFormComponent implements OnInit {
     this.userService.putUser(this.user.id, updateUser)
       .subscribe((data: User) => {
         this.userForAdminService.setData(data);
-        alert('The information was successfully updated.');
+        this.translate.get('The information was successfully updated.').subscribe((res: string) => {
+          alert(res);
+        });
       });
   }
 

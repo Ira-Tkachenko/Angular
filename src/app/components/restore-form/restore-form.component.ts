@@ -8,6 +8,8 @@ import { User } from '../../services/user';
 import { CurrentUserService } from '../../services/current-user.service';
 import { UsersService } from '../../services/users.service';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-restore-form',
@@ -22,7 +24,8 @@ export class RestoreFormComponent implements OnInit {
               private nameValidator: NameValidator,
               private currentUser: CurrentUserService,
               public userService: UsersService,
-              private router: Router
+              private router: Router,
+              public translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -45,7 +48,9 @@ export class RestoreFormComponent implements OnInit {
         this.currentUser.setData(data);
         this.router.navigate(['/user']);
       }, () => {
-          alert('User by name not found');
+          this.translate.get('User by name not found.').subscribe((res: string) => {
+            alert(res);
+          });
         }
       );
   }

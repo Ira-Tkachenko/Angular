@@ -54,7 +54,9 @@ app.post('/login', (req, res, next) => {
   const name = req.body.name;
   const password = req.body.password;
   const user = users.find(item => (item.name == name && item.password == password));
-  res.send(user);
+  setTimeout(() => {
+      res.send(user);
+    }, 3000);
 });
 
 app.put('/users/:id', (req, res, next) => {

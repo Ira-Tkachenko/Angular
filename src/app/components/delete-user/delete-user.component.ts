@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { UserForAdminService } from '../../services/user-for-admin.service';
 import { User } from '../../services/user';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-delete-user',
@@ -28,7 +28,6 @@ export class DeleteUserComponent implements OnInit, DoCheck {
   	if (this.userForAdminService.getData()) {
   		this.canDelete = false;
   		this.userId = this.userForAdminService.getData().id;
-  		console.log(this.userId);
   	} else {
   		this.canDelete = true;
   	}

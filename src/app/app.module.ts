@@ -4,21 +4,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient  } from '@angular/common/http';
 
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-//import { EffectsModule } from '@ngrx/effects';
-
-/*import { reducer as langReducer } from './reducers/language.reducer';
-import { reducer as usersReducer } from './reducers/users.reducer';
-import { reducer as profileReducer } from './reducers/profile.reduser';
-import { UsersEffect } from './effects/users.effect';
-import { ProfileEffect } from './effects/profile.effect';*/
-
-//import { MatDialogModule, MatDialog, MatDialogRef  } from '@angular/material/dialog';
-//import { MatDialogModule, MatDialogRef } from '@angular/material';
-//import { MatNativeDateModule } from '@angular/material';
-//import { DemoMaterialModule } from './material-module';
-
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {StoreModule} from '@ngrx/store';
+import {userInfoReducers, userLoginReducers} from './redux/user.state';
+import {EffectsModule} from '@ngrx/effects';
+import {UserEffects} from './redux/user.effects';
 
 import { AppComponent } from './app.component';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
@@ -39,7 +29,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { EditFormComponent } from './components/edit-form/edit-form.component';
 import { AddFormComponent } from './components/add-form/add-form.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
-//import { PopupWindowComponent } from './components/popup-window/popup-window.component';
+import { LoaderComponent } from './loader/loader.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -58,8 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditFormComponent,
     AddFormComponent,
     DeleteUserComponent,
-    //UserListComponent
-    //PopupWindowComponent
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,23 +63,18 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-   /*StoreModule.forRoot({
-      lang: langReducer,
-      users: usersReducer,
-      profile: profileReducer
-    }),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([UsersEffect, ProfileEffect])*/
-    //MatNativeDateModule,
-    //MatDialogModule
-    //DemoMaterialModule
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('UserInfo', userInfoReducers),
+    StoreModule.forFeature('UserLogin', userLoginReducers),
+    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [
     UsersService,
     CurrentUserService, 
     UserForAdminService,
-    //PopupWindowComponent, MatDialogRef
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [LoaderComponent]
 })
 export class AppModule {}

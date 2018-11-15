@@ -11,6 +11,7 @@ import { PasswordValidator } from '../../validators/password.validator';
 import { User } from '../../services/user';
 import { UsersService } from '../../services/users.service';
 import { CurrentUserService } from '../../services/current-user.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-form',
@@ -24,7 +25,8 @@ export class AddFormComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private nameValidator: NameValidator,
               public userService: UsersService,
-              private currentUser: CurrentUserService
+              private currentUser: CurrentUserService,
+              public translate: TranslateService
   ) {}
 
   ngOnInit() {  
@@ -56,7 +58,9 @@ export class AddFormComponent implements OnInit {
 
     this.userService.addUser(newUser)
       .subscribe((data: User) => {
-        alert('The user successfully added.');
+        this.translate.get('The user successfully added.').subscribe((res: string) => {
+          alert(res);
+        });
       });
   }
 

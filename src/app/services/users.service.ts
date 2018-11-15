@@ -26,6 +26,11 @@ export class UsersService {
     return this.http.post<User>(this.loginUrl, params);
   }
 
+  login(user: User): Observable<User> {
+    const {name, password} = user;
+    return this.http.post<User>(this.loginUrl, {name, password});
+  }
+
   restoreUser(userName: string, user: User): Observable<User> {
   	userName = userName.trim();
     return this.http.put<User>(`http://localhost:3030/restore/${userName}`, user).pipe(

@@ -10,11 +10,8 @@ import { NameValidator } from '../../validators/name.directive';
 import { User } from '../../services/user';
 import { CurrentUserService } from '../../services/current-user.service';
 import { UsersService } from '../../services/users.service';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 //import * as moment from 'moment';
-
-//import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-//import { PopupWindowComponent } from '../popup-window/popup-window.component';
 
 //!!!update form for current user!!!
 @Component({
@@ -23,24 +20,15 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['../form.component.scss']
 })
 export class RegistrationFormComponent implements OnInit {
-  //public show:boolean = false;
   user: User; 
   error: any;
   registrationForm: FormGroup;
-  submitName = '';
-  submitAge = '';
-  submitBirthday = '';
-  submitDateOfLogin = '';
-  submitDateOfNotification = '';
-  submitInformation = '';
 
   constructor(private fb: FormBuilder,
               private nameValidator: NameValidator,
               private currentUser: CurrentUserService,
-              public userService: UsersService,
-              public translate: TranslateService
-              //public dialog: MatDialog,
-              //public popupWindow: PopupWindowComponent
+              private userService: UsersService,
+              private translate: TranslateService,
   ) {}
 
   ngOnInit() {
@@ -59,14 +47,6 @@ export class RegistrationFormComponent implements OnInit {
   }
   
   update(name: string, age: string, birthday: string, dateOfLogin: string, dateOfNotification: string, information: string) { 
-    /*this.show = true;
-    this.submitName = name;
-    this.submitAge = age; 
-    this.submitBirthday = birthday;
-    this.submitDateOfLogin = dateOfLogin; 
-    this.submitDateOfNotification = dateOfNotification;
-    this.submitInformation = information;*/
-
     const updateUser = {
         id: this.user.id,
         name: name,
@@ -86,19 +66,5 @@ export class RegistrationFormComponent implements OnInit {
           alert(res);
         });
       });
-
-    //this.openPopupWindow();  
   }
-
-  /*openPopupWindow(): void {
-    const dialogRef = this.dialog.open(PopupWindowComponent, {
-      width: '250px',
-      data: {name: this.user.name}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }*/
-  
 }

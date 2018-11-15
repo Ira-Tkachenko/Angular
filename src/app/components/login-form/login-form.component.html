@@ -33,11 +33,7 @@
     <button type="submit" (click)="login(loginForm.get('name').value, loginForm.get('password').value)"
     [disabled]="loginForm.invalid">{{'Log in' | translate}}</button>
     <button type="button" (click)="formDir.resetForm({})">{{'Reset' | translate}}</button><br>
-    <!--<button type="button" routerLink="/restore">Forgot password?</button>-->
     <a routerLink="/restore" routerLinkActive="active">{{'Forgot password' | translate}}?</a>
+    <app-loader [loader]="isLoading"></app-loader>
   </div>
 </form>
-
-<!--<div *ngFor="let user of users | async">
-  <p><b>{{user.name}}</b></p>
-</div>-->

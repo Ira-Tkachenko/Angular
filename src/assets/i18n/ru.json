@@ -40,12 +40,11 @@
   "Add": "Добавить",
   "Select user for delete": "Выберите пользователя для удаления",
   "Author: Irina Tkachenko": "Автор: Ирина Ткаченко (не наоборот!)",
-<<<<<<< HEAD
   "It was a great practice": "Это была классная практика! Мне понравилось!",
   "The information was successfully updated.": "Информация была успешно обновлена",
-  "The user successfully deleted.": "Пользователь успешно удалён"
+  "The user successfully deleted.": "Пользователь успешно удалён",
+  "It was a great practice": "Это была классная практика! Мне понравилось!",
+  "The user successfully added.": "Пользователь успешно добавлен.",
+  "User not found. Check name and password.": "Пользователь не найден. Проверьте имя и пароль.",
+  "Please choose the user on the first tab.": "Пожалуйста, выберите пользователя на первой вкладке."
 }  
-=======
-  "It was a great practice": "Это была классная практика! Мне понравилось!"
-}  
->>>>>>> 604e040d7c79bc4f05b4e964e56e454b16019879
